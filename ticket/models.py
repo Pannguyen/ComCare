@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here. la base de données
-
+# models.py
 class Categorie(models.Model): 
     nom =  models.CharField(max_length = 255)
 

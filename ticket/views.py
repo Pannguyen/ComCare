@@ -2,8 +2,9 @@ from django.shortcuts import render
 from .form import CreationTicketForm
 from django.shortcuts import render
 from .models import Ticket
+from datetime import date 
 
-
+#views.py
 # Create your views here.
 def CreaTicket(request):
     if request.method == "POST": 
@@ -13,8 +14,8 @@ def CreaTicket(request):
                 titre = form.cleaned_data["titre"],
                 description = form.cleaned_data["description pour ticket1"],
                 date_creation = date.today(), 
-                data_cloture = null(), 
-                createur = request.User
+                data_cloture = None, 
+                createur = request.user
             )
             ticket.save() #save dans la base de données.   
     return {"succes":True}

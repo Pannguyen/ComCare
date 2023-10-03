@@ -2,6 +2,8 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
 
+
+#form.py
 class CreationTicketForm(forms.Form):
     titre = forms.CharField(label = "Titre du ticket", max_length = 255)
     description = forms.CharField(label = "desciption")

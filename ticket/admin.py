@@ -1,6 +1,6 @@
 from django.contrib import admin
+from .models import Ticket
 
 # Register your models here.
 
-class TicketAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'description', 'createur', 'date_creation', 'data_cloture', 'etat')
+admin.site.register(Ticket)

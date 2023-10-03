@@ -3,27 +3,28 @@ from django.contrib.auth.models import User
 
 # Create your models here. la base de données
 
-
+class Categorie(models.Model): 
+    nom =  models.CharField(max_length = 255)
 
 class Ticket(models.Model):
-    titre = models.CharField(max_lenght = 255)
-    description =  models.CharField()
+    titre = models.CharField(max_length = 255)
+    description =  models.TextField()
     date_creation = models.DateField()
     data_cloture = models.DateField(null=True)
-    categorie = models.ManyToManyField(Categorie) #creer une table lien entre cat et ticket 
-    createur = models.ForeignKey(User)
+    createur = models.ForeignKey(User,on_delete = models.CASCADE)
+    categorie = models.ManyToManyField(Categorie)
     CHOIX_ETAT = [
         ("C" , "créer"), 
         ("A" , "attente"), 
         ("E" , "en cours"), 
         ("T" , "terminer"),
     ]
-    etat = models.CharField(choices=CHOIX_ETAT)
+    etat = models.CharField(max_length = 1,choices=CHOIX_ETAT)
     
 
 
-class Categorie(models.Model): 
-    nom =  models.CharField(max_lenght = 255)
+
+
 
 
 

@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .form import CreationTicketForm
+from django.shortcuts import render
 from .models import Ticket
+
 
 # Create your views here.
 def CreaTicket(request):
@@ -14,11 +16,13 @@ def CreaTicket(request):
                 data_cloture = null(), 
                 createur = request.User
             )
-            ticket.save() #save dans la base de données.
-    else :
-        form = CreationTicketForm()     
-    return HttpResponseRedirect("/", form)
+            ticket.save() #save dans la base de données.   
+    return {"succes":True}
 
 
             
 
+def Temporaire(request):
+    return render(request,"./temporaire.html",{})
+
+    

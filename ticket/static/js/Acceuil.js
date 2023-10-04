@@ -12,6 +12,7 @@ $(document).ready(function () {
 			"description": $("#description").val(),
 			"csrfmiddlewaretoken": $("input[name=csrfmiddlewaretoken]").val(),
 			"categories": $("#categorie").val().join(","),
+			"anonyme": $("#anonymous").is(":checked") ? "on" : "off",
 		};
 		$.ajax({
 			url: "/creerTicket/",
@@ -87,7 +88,8 @@ function GetTickets() {
 						date.append("<h3>" + response["ticket"][2] + "</h3>");
 						let createur = $(".createur");
 						createur.empty();
-						createur.append("<h3>" + response["ticket"][4] + "</h3>");
+						if (!response["ticket"][6]) createur.append("<h3>" + response["ticket"][4] + "</h3>");
+						else createur.append("<h3>anonyme</h3>");
 						$("#msg_submit").off("click");
 						$("#msg_submit").click(function () {
 							let data = {

@@ -1,0 +1,57 @@
+/* Style général pour le formulaire */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 5);
+}
+
+
+label {
+    padding: 25px;
+    text-align: center;
+}
+
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+
+button {
+    background-color: #719fcf;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2d87e7;
+}
+
+/* Style pour les messages d'erreur */
+.messages {
+    color: red;
+    margin-top: 10px;
+}
+
+.formnewticket{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+}

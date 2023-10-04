@@ -14,3 +14,6 @@ def CreateTicket(request):
             message =  Message(
                 
             )
+
+def tmp(request):
+    return render(request,"ticket/template/tmp.html")

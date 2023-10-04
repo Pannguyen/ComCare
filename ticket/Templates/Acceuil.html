@@ -3,62 +3,77 @@
 <html>
 
 <head>
+	{% csrf_token %}
 	<meta charset="UTF-8">
 	<title>Ticket</title>
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="{% static 'js/Acceuil.js' %}"></script>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 	<header>
 		<h1>Nom prenom</h1>
 	</header>
-	<main>
+	<div class="main">
 		<div class="Menu">
-			<div class=”Filtre”>
+			<div class="Filtre">
 				<h1> Filtre</h1>
 			</div>
 			<div class="ListeTicket">
-				{% for ticket in tickets %}
-				<div class="ticket">
-					<input type="hidden" name="pk" value="{{ticket.6}}">
-					<h3 class="Elementticket">{{ticket.0}}</h3>
-					<div class="flex-row-sbw">
-						<p class="Elementticket">{{ticket.2}}</p>
-						<p class="Elementticket">{{ticket.5}}</p>
-					</div>
-				</div>
-				{% endfor %}
 			</div>
 			<div class="Nouveauticket">
 				<button>Nouveau ticket</button>
 			</div>
 		</div>
 		<div class="corps">
-			<div class="flex-row-sbw">
-				<div class="Titre">
-					<h1>Titre</h1>
+			<div class="detail">
+				<div class="flex-row-sbw">
+					<div class="Titre">
+						<h1>Titre</h1>
+					</div>
+					<div class="Etat">
+						<h1>Etat</h1>
+					</div>
 				</div>
-				<div class="Etat">
-					<h1>Etat</h1>
+				<div class="flex-row-sbw">
+					<div class="createur">
+						<h3>createur</h3>
+					</div>
+
+					<div class="Date">
+						<p>Date</p>
+					</div>
+
 				</div>
+				<div class="Description">
+					<h1>Description</h1>
+				</div>
+				<div id="list_msg">
+				</div>
+				<from>
+					<input type="text" name="message" id="message" placeholder="Répondre">
+					<button type="button" value="Envoyer" id="msg_submit">Envoyer</button>
+				</from>
 			</div>
-			<div class="flex-row-sbw">
-				<div class="createur">
-					<h3>createur</h3>
+			<form class="formnewticket">
+
+				<label for="titre"> Titre</label>
+				<input type="text" name="titre" id="titre" pattern="^\D*$" required>
+
+				<label for="description">Description</label>
+				<input type="text" name="description" id="description" pattern="^\D*$" required>
+
+				<div>
+					<button id="submitnewticketform" type="button">Envoyer</button>
+					<button type="reset">Effacer</button>
 				</div>
-				
-				<div class="Date">
-					<p>Date</p>
-				</div>
-				
-			</div>
-			<div class="Description">
-				<h1>Description</h1>
-			</div>
+
+			</form>
 		</div>
-	</main>
+	</div>
 </body>
 
 </html>

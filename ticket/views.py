@@ -4,8 +4,6 @@ from django.http import JsonResponse
 from datetime import datetime, date
 
 
-#views.py
-# Create your views here.
 def GetTicketMessages(request,id):
     messages = [msg for msg in Message.objects.filter(ticket=id).prefetch_related("auteur").values_list("contenu","date_envoi","auteur__username")]
     return JsonResponse({"messages":messages})
@@ -28,7 +26,8 @@ def CreaTicket(request):
                 description=request.POST.get('description',''),
                 date_creation=date.today(),
                 date_cloture=None,
-                createur=request.user
+                createur=request.user,
+                etat="C",
             )
             ticket.save()
             return JsonResponse({})
@@ -49,10 +48,12 @@ def login(request):
 #     return render(request, 'temporaire.html', {'form': form})
     
 
-# Create your views here.
 def Acceuil(request):
-	tickets = [ticket for ticket in Ticket.objects.all().prefetch_related("createur").values_list("titre","description","date_creation","date_cloture","createur","etat","pk")]
-	return render(request,'./Acceuil.html',{"tickets":tickets})
+	return render(request,'./Acceuil.html',{})
+
+def GetTickets(request):
+    tickets = [ticket for ticket in Ticket.objects.all().prefetch_related("createur").order_by("-date_creation").values_list("titre","description","date_creation","date_cloture","createur","etat","pk")]
+    return JsonResponse({"tickets":tickets})
     
 def GetTicketDetail(resquest,id):
     ticket = Ticket.objects.filter(pk=id).prefetch_related("createur").values_list("titre","description","date_creation","date_cloture","createur__username","etat").distinct()[0]

@@ -31,6 +31,9 @@ def Temporaire(request):
     return render(request,"./temporaire.html",{})
 
 
+def login(request): 
+    return render(request,"./login.html",{})
+
 
 def upload_file(request):
     if request.method == 'POST':

@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('creerTicket/', CreaTicket),
     path('temporaire/',Temporaire,name="temporaire"),
+    path('login/', login), 
 ]
 
 

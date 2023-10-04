@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Message, Ticket
 from django.http import JsonResponse
 from datetime import datetime, date
@@ -32,19 +32,12 @@ def CreaTicket(request):
             )
             ticket.save()
             return JsonResponse({})
-    return render(request, "./temporaire.html", {})
-
-            
-
-def Temporaire(request):
-    return render(request,"./temporaire.html",{})
-
+    return redirect("/Acceuil/")
 
 def login(request): 
     return render(request,"./login.html",{})
 
 # TOFIX : ah quoi sert cette fonction ?
-
 # def upload_file(request):
 #     if request.method == 'POST':
 #         form = UploadFileForm(request.POST, request.FILES)
@@ -55,8 +48,7 @@ def login(request):
 #         form = UploadFileForm()
 #     return render(request, 'temporaire.html', {'form': form})
     
-from .models import Ticket
-from django.http import JsonResponse
+
 # Create your views here.
 def Acceuil(request):
 	tickets = [ticket for ticket in Ticket.objects.all().prefetch_related("createur").values_list("titre","description","date_creation","date_cloture","createur","etat","pk")]

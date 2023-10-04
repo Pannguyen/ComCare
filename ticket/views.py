@@ -17,3 +17,6 @@ def CreateTicket(request):
 
 def tmp(request):
     return render(request,"ticket/template/tmp.html")
+
+def Acceuil (request):
+	return render(request,'./Acceuil.html',{})

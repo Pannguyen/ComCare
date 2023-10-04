@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ticket.views import CreateTicket, GetTicketMessages, tmp
+from ticket.views import CreateTicket, GetTicketMessages, tmp, Acceuil
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("CreateTicket/",CreateTicket),
     path("GetTicketMessages/",GetTicketMessages),
     path("tmp/",tmp),
+    path('Acceuil/',Acceuil),
 ]

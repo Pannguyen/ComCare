@@ -1,0 +1,47 @@
+/*header style*/
+header {
+   text-align: right; 
+   padding: 10px;
+}
+body {
+	margin:0;
+	padding:0;
+}
+.Menu {
+	position:absolute;
+	height:570px;
+	display: flex;
+    	flex-direction: column;
+    	flex-wrap: nowrap;
+   	align-content: center;
+    	align-items: center;
+    	justify-content: space-around;
+}
+
+.Filtre {
+	top:0px;
+}
+.numTicket {
+	
+}
+.NouveauTicket {
+
+}
+.corps {
+    position: relative;
+    top: 0px;
+    left: 300px;
+    height: 600px;
+    background-color: red;
+    width: calc(100% - 320px);
+    padding: 10px;
+}
+
+.flex-row-sbw{
+	display: flex;
+    	flex-direction: row;
+    	flex-wrap: nowrap;
+    	justify-content: space-between;
+    	align-content: center;
+   	align-items: center;
+}

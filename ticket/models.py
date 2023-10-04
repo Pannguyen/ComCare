@@ -13,7 +13,7 @@ class Ticket(models.Model):
     titre = models.CharField(max_length = 255)
     description =  models.TextField()
     date_creation = models.DateField()
-    data_cloture = models.DateField(null=True)
+    data_cloture = models.DateField(null=True,blank=True)
     createur = models.ForeignKey(User,on_delete = models.CASCADE)
     # categorie = models.ManyToManyField(Categorie)
     CHOIX_ETAT = [

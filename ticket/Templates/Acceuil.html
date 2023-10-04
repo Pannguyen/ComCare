@@ -5,6 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Ticket</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="{% static 'js/Acceuil.js' %}"></script>
 </head>
 
 <body>
@@ -15,15 +17,22 @@
 	<main>
 		<div class="Menu">
 			<div class=”Filtre”>
-				<h1> dadza</h1>
+				<h1> Filtre</h1>
 			</div>
-			<div>
-				<div class=”numTicket”>
-					<h1>Num Ticket</h1>
+			<div class="ListeTicket">
+				{% for ticket in tickets %}
+				<div class="ticket">
+					<input type="hidden" name="pk" value="{{ticket.6}}">
+					<h3 class="Elementticket">{{ticket.0}}</h3>
+					<div class="flex-row-sbw">
+						<p class="Elementticket">{{ticket.2}}</p>
+						<p class="Elementticket">{{ticket.5}}</p>
+					</div>
 				</div>
+				{% endfor %}
 			</div>
 			<div class="Nouveauticket">
-				<h1>Nouveau ticket</h1>
+				<button>Nouveau ticket</button>
 			</div>
 		</div>
 		<div class="corps">
@@ -37,11 +46,13 @@
 			</div>
 			<div class="flex-row-sbw">
 				<div class="createur">
-					<h1>createur</h1>
+					<h3>createur</h3>
 				</div>
+				
 				<div class="Date">
-					<h1>Date_creation</h1>
+					<p>Date</p>
 				</div>
+				
 			</div>
 			<div class="Description">
 				<h1>Description</h1>

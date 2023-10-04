@@ -2,6 +2,8 @@
 header {
    text-align: right; 
    padding: 10px;
+   background-color:#808080;
+   color:white;
 }
 body {
 	margin:0;
@@ -9,20 +11,28 @@ body {
 }
 .Menu {
 	position:absolute;
-	height:570px;
+	height:620px;
 	display: flex;
-    	flex-direction: column;
-    	flex-wrap: nowrap;
+    flex-direction: column;
+    flex-wrap: nowrap;
    	align-content: center;
-    	align-items: center;
-    	justify-content: space-around;
-}
+    align-items: center;
+    justify-content: space-around;
+	width:300px;
+	background-color: #808080;
+	color:white;
+	}
 
 .Filtre {
 	top:0px;
 }
-.numTicket {
-	
+.ticket {
+    border: 5px double #000000;
+    background: #808080;
+    width: calc(80% - 20px);
+    margin: 5px;
+    padding: 5px;
+	border-radius:5px;
 }
 .NouveauTicket {
 
@@ -32,7 +42,7 @@ body {
     top: 0px;
     left: 300px;
     height: 600px;
-    background-color: red;
+    background-color: white;
     width: calc(100% - 320px);
     padding: 10px;
 }
@@ -45,3 +55,43 @@ body {
     	align-content: center;
    	align-items: center;
 }
+
+.Date{
+}
+.createur{
+}
+.Description{
+	text-align : center;
+}
+.ListeTicket{
+	display:flex;
+	flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+	width : 100%;
+	overflow-y:auto;
+	height:80%;
+}
+.Elementticket{
+	margin : 5px;
+}
+
+.Nouveauticket{
+	display:flex;
+	justify-content:center;
+	width: 100%;
+	padding:5px;
+}
+
+.Nouveauticket button{
+	width:80%;
+	height:2.5rem;
+	font-size:1.5rem;
+	background-color:#dcdcdc;
+	border-radius:5px;
+}
+
+	
+	

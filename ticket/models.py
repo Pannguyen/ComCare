@@ -27,8 +27,14 @@ class Ticket(models.Model):
     def __str__(self):
         return self.titre
     
+class Message(models.Model):
+    ticket = models.ForeignKey(Ticket,on_delete = models.CASCADE)
+    contenu = models.TextField()
+    date_envoi = models.DateField()
+    auteur = models.ForeignKey(User,on_delete = models.CASCADE)
 
-
+    def __str__(self):
+        return "%s : %s" % (self.auteur,self.date_envoi)
 
 
 

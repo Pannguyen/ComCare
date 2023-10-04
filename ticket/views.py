@@ -1,29 +1,44 @@
 from django.shortcuts import render
 from .form import CreationTicketForm
-from django.shortcuts import render
 from .models import Ticket
 from datetime import date 
+from django.http import JsonResponse
+
 
 #views.py
 # Create your views here.
+
+
 def CreaTicket(request):
     if request.method == "POST": 
-        form = CreationTicketForm(request.POST) #prendre le formulaire et remplir avec des données. 
-        if form.is_valide(): #verifier si formulare est correct. 
             ticket = Ticket(
-                titre = form.cleaned_data["titre"],
-                description = form.cleaned_data["description pour ticket1"],
-                date_creation = date.today(), 
-                data_cloture = None, 
-                createur = request.user
+                titre=request.POST.get('titre',''),
+                description=request.POST.get('description',''),
+                date_creation=date.today(),
+                date_cloture=None,
+                createur=request.user
             )
-            ticket.save() #save dans la base de données.   
-    return {"succes":True}
-
+            ticket.save()
+            return JsonResponse({})
+            
+            
+    
+    return render(request, "./temporaire.html", {"form": CreationTicketForm()})
 
             
 
 def Temporaire(request):
     return render(request,"./temporaire.html",{})
 
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'])
+            return HttpResponseRedirect('/success/url/')
+    else:
+        form = UploadFileForm()
+    return render(request, 'temporaire.html', {'form': form})
     

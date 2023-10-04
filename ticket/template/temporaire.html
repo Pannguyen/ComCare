@@ -1,19 +1,32 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/temporaire.js' %}"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
     <form>
-        <lable for="titre"> titre</lable> 
-        <input type="text" name="titre" id="titre">
+        {% csrf_token %}
+        <!-- Le formulaire -->
+        <label for="titre"> Titre</label> 
+        <input type="text" name="titre" id="titre" pattern="^\D*$" required>
 
-        <lable for="description "> description</lable> 
-        <input type="text" name="description" id="description">
-        <button> envoyer </button>
+        <label for="description">Description</label>  
+        <input type="text" name="description" id="description" pattern="^\D*$" required>
+
+        <button id="submitnewticketform" type="button">Envoyer</button>
+
+        <button type="reset">Effacer</button>
 
     </form>
+    
+    
+   
+
 </body>
 </html>

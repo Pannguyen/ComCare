@@ -20,8 +20,8 @@ from ticket.views import CreateTicket, GetTicketMessages, tmp, Acceuil
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("CreateTicket/",CreateTicket),
-    path("GetTicketMessages/",GetTicketMessages),
+    path("CreateTicket/<int:id>/",CreateTicket),
+    path("GetTicketMessages/<int:id>/",GetTicketMessages),
     path("tmp/",tmp),
     path('Acceuil/',Acceuil),
 ]

@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,15 +8,16 @@
     <title>Document</title>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="tmp.js"></script>
+    <script src="{% static 'js/tmp.js' %}"></script>
 
 </head>
 <body>
     <div id="list_msg">
     </div>
     <from>
+        {% csrf_token %}
         <input type="text" name="message" id="message" placeholder="Répondre">
-        <button type="button" value="Envoyer" id="msg_submit">
+        <button type="button" value="Envoyer" id="msg_submit">Envoyer</button>
     </from>
 </body>
 </html>

@@ -19,12 +19,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from ticket.views import *
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('creerTicket/', CreaTicket),
-    path('temporaire/',Temporaire,name="temporaire"),
-    path('login/', login), 
+    path('temporaire/', Temporaire, name="temporaire"),
+    path('login/', custom_login, name='login'),
+    path('navbar/', navbar, name='navbar'),
+     
 ]
 
 

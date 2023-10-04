@@ -12,7 +12,7 @@ $(document).ready(function(){
             type:"POST",
             data: data, 
             success: function(response){
-                alert("Ticket a créé avec succesc")
+                alert("Ticket a créé avec success")
             }
         })
     })

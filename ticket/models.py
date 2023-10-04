@@ -15,7 +15,7 @@ class Ticket(models.Model):
     date_creation = models.DateField()
     date_cloture = models.DateField(null=True,blank=True)
     createur = models.ForeignKey(User,on_delete = models.CASCADE)
-    # categorie = models.ManyToManyField(Categorie)
+    categorie = models.ManyToManyField(Categorie)
     CHOIX_ETAT = [
         ("C" , "créer"), 
         ("A" , "attente"), 

@@ -41,9 +41,8 @@ body {
 	background-color: #dcdcdc;
 	color: #000000;
 }
-.Filtre h1{
-	margin: 0;
-	padding: 0;
+.Filtre form{
+	display: flex;
 }
 
 .ticket {

@@ -18,6 +18,7 @@ Including another URLconf
 #urls.py
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from ticket.views import CreateTicketMessage, GetTicketMessages, Acceuil, CreaTicket, loginpage, GetTicketDetail, GetTickets, navbar, get_user_info, custom_login
 
 urlpatterns = [
@@ -31,5 +32,7 @@ urlpatterns = [
     path('gettickets/',GetTickets),
     path('loginme/', custom_login, name='login'),
     path('get_user_info/', get_user_info, name='get_user_info'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    
 ]
 

@@ -34,17 +34,6 @@ def CreaTicket(request):
             ticket.save()
             return JsonResponse({})
     return redirect("/Acceuil/")
-
-# TOFIX : ah quoi sert cette fonction ?
-# def upload_file(request):
-#     if request.method == 'POST':
-#         form = UploadFileForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             handle_uploaded_file(request.FILES['file'])
-#             return HttpResponseRedirect('/success/url/')
-#     else:
-#         form = UploadFileForm()
-#     return render(request, 'temporaire.html', {'form': form})
     
 
 def Acceuil(request):
@@ -86,3 +75,7 @@ def get_user_info(request):
         return JsonResponse(user_info)
     else:
         return JsonResponse({})
+        
+def custom_logout(request):
+    logout(request)
+    return redirect('login')

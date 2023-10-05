@@ -17,20 +17,21 @@ Including another URLconf
 
 #urls.py
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from ticket.views import *
 from django.contrib.auth import views as auth_views
+from ticket import views
+
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('creerTicket/', CreaTicket),
+    path('creerTicket/', CreaTicket, name='creer_ticket'), 
     path('temporaire/', Temporaire, name="temporaire"),
     path('login/', custom_login, name='login'),
     path('navbar/', navbar, name='navbar'),
+    path('get_user_info/', views.get_user_info, name='get_user_info'),
      
 ]
-
-
-
 

@@ -15,7 +15,7 @@ $(document).ready(function () {
             type: "POST",
             data: data,
             success: function (response) {
-                alert("Ticket a créé avec succes")
+                alert("Connexion réussi")
             }
         })
     })

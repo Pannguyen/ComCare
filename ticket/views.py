@@ -65,3 +65,14 @@ def custom_login(request):
 
 def navbar(request):
     return render(request, 'navbar.html')
+
+
+
+def get_user_info(request):
+    if request.user.is_authenticated:
+        user_info = {
+            "username": request.user.username,
+        }
+        return JsonResponse(user_info)
+    else:
+        return JsonResponse({})

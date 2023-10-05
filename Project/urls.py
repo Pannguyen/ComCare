@@ -30,8 +30,9 @@ urlpatterns = [
     path('creerTicket/', CreaTicket, name='creer_ticket'), 
     path('temporaire/', Temporaire, name="temporaire"),
     path('login/', custom_login, name='login'),
-    path('navbar/', navbar, name='navbar'),
+    path('navbar/', views.navbar, name='navbar'),
     path('get_user_info/', views.get_user_info, name='get_user_info'),
+    path('admin/', admin.site.urls), 
      
 ]
 

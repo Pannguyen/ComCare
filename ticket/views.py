@@ -24,8 +24,6 @@ def CreaTicket(request):
             ticket.save()
             return JsonResponse({})
             
-            
-    
     return render(request, "./temporaire.html", {"form": CreationTicketForm()})
 
             
@@ -44,11 +42,12 @@ def upload_file(request):
         form = UploadFileForm()
     return render(request, 'temporaire.html', {'form': form})
 
+def navbar(request):
+    return render(request, 'navbar.html')
 
 def login(request): 
     return render(request,"./login.html",{})
 
-#vérifie simplement si le nom d'utilisateur et le mot de passe correspondent
 def custom_login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -56,16 +55,10 @@ def custom_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('nom_de_la_vue_de_succes')
+            return redirect('navbar.html')
         else:
             return render(request, 'login.html', {'error_message': 'Nom d\'utilisateur ou mot de passe incorrect.'})
     return render(request, 'login.html')
-
-
-
-def navbar(request):
-    return render(request, 'navbar.html')
-
 
 
 def get_user_info(request):

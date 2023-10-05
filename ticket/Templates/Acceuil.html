@@ -28,7 +28,15 @@
 	<div class="main">
 		<div class="Menu">
 			<div class="Filtre">
-				<h1> Filtre</h1>
+				<form>
+					<label for="categoriefilter">Categorie</label>
+					<select name="categoriefilter" id="categoriefilter" multiple>
+						{% for categorie in categories %}
+						<option value="{{ categorie.0 }}">{{ categorie.1 }}</option>
+						{% endfor %}
+					</select>
+					<button type="button" id="submitfilter">Filtrer</button>
+				</form>
 			</div>
 			<div class="ListeTicket">
 			</div>
@@ -73,6 +81,15 @@
 
 				<label for="description">Description</label>
 				<input type="text" name="description" id="description" pattern="^\D*$" required>
+
+				<div>
+					<label for="categorie">Categorie</label>
+					<select name="categorie" id="categorie" multiple>
+						{% for categorie in categories %}
+						<option value="{{ categorie.0 }}">{{ categorie.1 }}</option>
+						{% endfor %}
+					</select>
+				</div>
 
 				<div>
 					<button id="submitnewticketform" type="button">Envoyer</button>

@@ -26,6 +26,7 @@ def CreateTicketMessage(request,id):
 @login_required(redirect_field_name="login")
 def CreaTicket(request):
     if request.method == "POST": 
+            categorie = Categorie.objects.filter(pk__in=request.POST.get('categories','').split(","))
             ticket = Ticket(
                 titre=request.POST.get('titre',''),
                 description=request.POST.get('description',''),
@@ -34,6 +35,9 @@ def CreaTicket(request):
                 createur=request.user,
                 etat="C",
             )
+            ticket.save()
+            for cat in categorie:
+                ticket.categorie.add(cat)
             ticket.save()
             return JsonResponse({})
     return redirect("/Acceuil/")
@@ -51,10 +55,19 @@ def CreaTicket(request):
     
 @login_required(redirect_field_name="login")
 def Acceuil(request):
-	return render(request,'./Acceuil.html',{})
+    categories = [[cat[0],cat[1]] for cat in Categorie.objects.all().values_list("pk","nom")]
+    print(categories)
+    return render(request,'./Acceuil.html',{"categories":categories})
 
 def GetTickets(request):
-    tickets = [ticket for ticket in Ticket.objects.all().prefetch_related("createur").order_by("-date_creation").values_list("titre","description","date_creation","date_cloture","createur","etat","pk")]
+    qs = Ticket.objects
+    Categorie = request.GET.get("categories",None)
+    print(Categorie)
+    if Categorie:
+        qs = qs.filter(categorie__in=Categorie.split(","))
+    else:
+        qs = qs.all()
+    tickets = [ticket for ticket in qs.distinct().prefetch_related("createur").order_by("-date_creation").values_list("titre","description","date_creation","date_cloture","createur","etat","pk")]
     return JsonResponse({"tickets":tickets})
     
 def GetTicketDetail(resquest,id):

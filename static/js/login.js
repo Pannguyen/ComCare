@@ -3,19 +3,19 @@
 //login.js
 
 
-$(document).ready(function(){
-    $("#submit").click(function(){
+$(document).ready(function () {
+    $("#submit").click(function () {
         let data = {
             "username": $("#username").val(),
-            "password" : $("#password").val(),
+            "password": $("#password").val(),
             "csrfmiddlewaretoken": $("input[name=csrfmiddlewaretoken]").val()
         }
         $.ajax({
             url: "/login/",
-            type:"POST",
-            data: data, 
-            success: function(response){
-                alert("Connexion réussi!")
+            type: "POST",
+            data: data,
+            success: function (response) {
+                alert("Ticket a créé avec succes")
             }
         })
     })

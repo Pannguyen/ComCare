@@ -18,7 +18,7 @@ Including another URLconf
 #urls.py
 from django.contrib import admin
 from django.urls import path
-from ticket.views import CreateTicketMessage, GetTicketMessages, Acceuil, CreaTicket, login, GetTicketDetail, GetTickets
+from ticket.views import CreateTicketMessage, GetTicketMessages, Acceuil, CreaTicket, loginpage, GetTicketDetail, GetTickets, navbar, get_user_info, custom_login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,11 +26,11 @@ urlpatterns = [
     path("GetTicketMessages/<int:id>/",GetTicketMessages),
     path('Acceuil/',Acceuil),
     path('creerTicket/', CreaTicket),
-    path('login/', login), 
+    path('login/', loginpage), 
     path('getticketdetail/<int:id>/',GetTicketDetail),
-    path('gettickets/',GetTickets)
+    path('gettickets/',GetTickets),
+    path('loginme/', custom_login, name='login'),
+    path('navbar/', navbar, name='navbar'),
+    path('get_user_info/', get_user_info, name='get_user_info'),
 ]
-
-
-
 

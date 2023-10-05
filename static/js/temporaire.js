@@ -1,18 +1,18 @@
 // temporaire.js
 
-$(document).ready(function(){
-    $("#submitnewticketform").click(function(){
+$(document).ready(function () {
+    $("#submitnewticketform").click(function () {
         let data = {
             "titre": $("#titre").val(),
-            "description" : $("#description").val(),
+            "description": $("#description").val(),
             "csrfmiddlewaretoken": $("input[name=csrfmiddlewaretoken]").val()
         }
         $.ajax({
             url: "/creerTicket/",
-            type:"POST",
-            data: data, 
-            success: function(response){
-                alert("Ticket a créé avec success")
+            type: "POST",
+            data: data,
+            success: function (response) {
+                alert("Ticket a créé avec succesc")
             }
         })
     })

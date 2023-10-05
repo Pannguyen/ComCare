@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Message, Ticket
 from django.http import JsonResponse
 from datetime import datetime, date
+from django.contrib.auth import authenticate, login
+
 
 
 def GetTicketMessages(request,id):
@@ -33,9 +35,6 @@ def CreaTicket(request):
             return JsonResponse({})
     return redirect("/Acceuil/")
 
-def login(request): 
-    return render(request,"./login.html",{})
-
 # TOFIX : ah quoi sert cette fonction ?
 # def upload_file(request):
 #     if request.method == 'POST':
@@ -58,4 +57,32 @@ def GetTickets(request):
 def GetTicketDetail(resquest,id):
     ticket = Ticket.objects.filter(pk=id).prefetch_related("createur").values_list("titre","description","date_creation","date_cloture","createur__username","etat").distinct()[0]
     return JsonResponse({"ticket":ticket})
-    
+
+def navbar(request):
+    return render(request, 'navbar.html')
+
+def loginpage(request): 
+    return render(request,"./login.html",{})
+
+def custom_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            print("redirect('/Acceuil/')")
+            return redirect('/Acceuil/')
+        else:
+            return render(request, 'login.html', {'error_message': 'Nom d\'utilisateur ou mot de passe incorrect.'})
+    return render(request, 'login.html')
+
+
+def get_user_info(request):
+    if request.user.is_authenticated:
+        user_info = {
+            "username": request.user.username,
+        }
+        return JsonResponse(user_info)
+    else:
+        return JsonResponse({})

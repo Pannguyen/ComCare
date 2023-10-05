@@ -9,14 +9,22 @@
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="{% static 'js/Acceuil.js' %}"></script>
+	<script src="{% static 'js/navbar.js' %}"></script>
 
 	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
 </head>
 
 <body>
-	<header>
-		<h1>Nom prenom</h1>
-	</header>
+	<nav class="navbar">
+		<ul class="nav-list">
+			<li><a href="#">Accueil</a></li>
+			<li><a href="#">À propos</a></li>
+			<li><a href="#">Services</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+		<div class="user-info"></div>
+	</nav>
 	<div class="main">
 		<div class="Menu">
 			<div class="Filtre">

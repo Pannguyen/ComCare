@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/temporaire.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/temporaire.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form class="formnewticket">
+        {% csrf_token %}
+        <!-- Le formulaire -->
+
+        <label for="titre"> Titre</label>
+        <input type="text" name="titre" id="titre" pattern="^\D*$" required>
+
+
+
+
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description" pattern="^\D*$" required>
+
+
+
+        <div>
+            <button id="submitnewticketform" type="button">Envoyer</button>
+
+            <button type="reset">Effacer</button>
+        </div>
+
+    </form>
+
+
+
+
+</body>
+
+</html>

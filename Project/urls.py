@@ -30,7 +30,6 @@ urlpatterns = [
     path('getticketdetail/<int:id>/',GetTicketDetail),
     path('gettickets/',GetTickets),
     path('loginme/', custom_login, name='login'),
-    path('navbar/', navbar, name='navbar'),
     path('get_user_info/', get_user_info, name='get_user_info'),
 ]
 

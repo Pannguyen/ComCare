@@ -17,14 +17,19 @@
 
 <body>
 	<nav class="navbar">
-		<ul class="nav-list">
-			<li><a href="#">Accueil</a></li>
-			<li><a href="#">À propos</a></li>
-			<li><a href="#">Services</a></li>
-			<li><a href="#">Contact</a></li>
-		</ul>
-		<div class="user-info"></div>
-	</nav>
+        <ul class="nav-list">
+            <li><a href="/Acceuil/">Acceuil</a></li>
+            {% if user.is_superuser %}
+            <li><a href="/administration/">Administration</a></li>
+            {% endif %}
+        </ul>
+        <div class="log">
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="logout-button">Déconnexion</a>
+            {% endif %}
+            <div class="user-info"></div>
+        </div>
+    </nav>
 	<div class="main">
 		<div class="Menu">
 			<div class="Filtre">
@@ -100,6 +105,8 @@
 					<button id="submitnewticketform" type="button">Envoyer</button>
 					<button type="reset">Effacer</button>
 				</div>
+				<a href="{% url 'logout' %}">Déconnexion</a>
+
 
 			</form>
 		</div>

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Message, Ticket, Categorie
 from django.http import JsonResponse
 from datetime import datetime, date
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -43,17 +43,6 @@ def CreaTicket(request):
             ticket.save()
             return JsonResponse({})
     return redirect("/Acceuil/")
-
-# TOFIX : ah quoi sert cette fonction ?
-# def upload_file(request):
-#     if request.method == 'POST':
-#         form = UploadFileForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             handle_uploaded_file(request.FILES['file'])
-#             return HttpResponseRedirect('/success/url/')
-#     else:
-#         form = UploadFileForm()
-#     return render(request, 'temporaire.html', {'form': form})
     
 @login_required(redirect_field_name="login")
 def Acceuil(request):
@@ -115,13 +104,23 @@ def CreatUser(request):
     if not request.user.is_superuser:
         return redirect('/Acceuil/')
     if request.method == "POST":
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        email = request.POST.get('email', '')
+        first_name = request.POST.get('first_name', '')
+        last_name = request.POST.get('last_name', '')
         user = User(
-            username=request.POST.get('username',''),
-            password=request.POST.get('password',''),
-            email=request.POST.get('email',''),
-            first_name=request.POST.get('first_name',''),
-            last_name=request.POST.get('last_name',''),
+            username=username,
+            email=email,
+            first_name=first_name,
+            last_name=last_name,
         )
+        user.set_password(password)
         user.save()
         return JsonResponse({})
     return redirect("/Acceuil/")
+        
+def custom_logout(request):
+    logout(request)
+    
+    return redirect('login')

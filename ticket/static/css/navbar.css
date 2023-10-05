@@ -38,3 +38,25 @@
 .nav-list li a:hover {
     color: #ff6600; 
 }
+
+.logout-button {
+    color: azure;
+    padding: 0 10px 0 10px;
+}
+
+.logout-button:hover {
+    color: #ff6600;
+}
+
+.user-info {
+    color: azure;
+}
+
+.log {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+}

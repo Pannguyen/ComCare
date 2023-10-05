@@ -5,6 +5,14 @@
 
 $(document).ready(function () {
     $("#submit").click(function () {
+        if ($("#username").val() == "") {
+            alert("Veuillez entrer un nom d'utilisateur.");
+            return;
+        }
+        if ($("#password").val() == "") {
+            alert("Veuillez entrer un mot de passe.");
+            return;
+        }
         let data = {
             "username": $("#username").val(),
             "password": $("#password").val(),

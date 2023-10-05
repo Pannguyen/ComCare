@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Message, Ticket
+from .models import Message, Ticket, Categorie
 from django.http import JsonResponse
 from datetime import datetime, date
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -21,6 +23,7 @@ def CreateTicketMessage(request,id):
         message.save()
     return JsonResponse({})
 
+@login_required(redirect_field_name="login")
 def CreaTicket(request):
     if request.method == "POST": 
             ticket = Ticket(
@@ -46,7 +49,7 @@ def CreaTicket(request):
 #         form = UploadFileForm()
 #     return render(request, 'temporaire.html', {'form': form})
     
-
+@login_required(redirect_field_name="login")
 def Acceuil(request):
 	return render(request,'./Acceuil.html',{})
 
@@ -57,9 +60,6 @@ def GetTickets(request):
 def GetTicketDetail(resquest,id):
     ticket = Ticket.objects.filter(pk=id).prefetch_related("createur").values_list("titre","description","date_creation","date_cloture","createur__username","etat").distinct()[0]
     return JsonResponse({"ticket":ticket})
-
-def navbar(request):
-    return render(request, 'navbar.html')
 
 def loginpage(request): 
     return render(request,"./login.html",{})
@@ -86,3 +86,29 @@ def get_user_info(request):
         return JsonResponse(user_info)
     else:
         return JsonResponse({})
+
+@login_required(redirect_field_name="login")
+def administration(request):
+    # check if user is admin
+    if not request.user.is_superuser:
+        return redirect('/Acceuil/')
+    users = [user.username for user in User.objects.all()]
+    roles = [{"pk":role.pk,"nom":role.nom} for role in Categorie.objects.all()]
+    return render(request, 'administration.html', {"users":users,"roles":roles})
+
+@login_required(redirect_field_name="login")
+def CreatUser(request):
+    # check if user is admin
+    if not request.user.is_superuser:
+        return redirect('/Acceuil/')
+    if request.method == "POST":
+        user = User(
+            username=request.POST.get('username',''),
+            password=request.POST.get('password',''),
+            email=request.POST.get('email',''),
+            first_name=request.POST.get('first_name',''),
+            last_name=request.POST.get('last_name',''),
+        )
+        user.save()
+        return JsonResponse({})
+    return redirect("/Acceuil/")

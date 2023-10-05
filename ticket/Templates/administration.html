@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComCare - Administration</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/administration.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/administration.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+</head>
+
+<body>
+    {% csrf_token %}
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="/Acceuil/">Acceuil</a></li>
+            {% if user.is_superuser %}
+            <li><a href="/administration/">Administration</a></li>
+            {% endif %}
+        </ul>
+        <div class="log">
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="logout-button">Déconnexion</a>
+            {% endif %}
+            <div class="user-info"></div>
+        </div>
+    </nav>
+    <div class="body">
+        <form>
+            <h2>Nouvel utilisateur</h2>
+            <div class="input-name input_label">
+                <label for="username">Nom d'utilisateur:</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+            <div class="input-email input_label">
+                <label for="email">Adresse email:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div class="input-first_name input_label">
+                <label for="first_name">Prénom:</label>
+                <input type="text" name="first_name" id="first_name">
+            </div>
+            <div class="input-last_name input_label">
+                <label for="last_name">Nom:</label>
+                <input type="text" name="last_name" id="last_name">
+            </div>
+            <div class="input-password input_label">
+                <label for="password">Mot de passe:</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div class="input-password input_label">
+                <label for="password">Confirmer le mot de passe:</label>
+                <input type="password" name="password_confirm" id="password_confirm" required>
+            </div>
+            <div class="input-button input_label">
+                <button id="submitnew" type="button">Créer</button>
+                <button type="reset">Effacer</button>
+            </div>
+        </form>
+        <!-- <form>
+        <h2>Modifié un utilisateur</h2>
+        <div class="input-name input_label">
+            <label for="username">Nom d'utilisateur:</label>
+            <select name="username" id="username" required>
+                {% for user in users %}
+                <option value="{{ user }}">{{ user }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="input-role">
+            <select name="role" id="role" required multiple>
+                {% for role in roles %}
+                <option value="{{ role.pk }}">{{ role.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="input-button input_label">
+            <button id="submit" type="button">Modifier</button>
+            <button id="Supprimer" type="button">Supprimer</button>
+        </div>
+    </form> -->
+    </div>
+</body>
+
+</html>

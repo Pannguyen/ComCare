@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	{% csrf_token %}
+	<meta charset="UTF-8">
+	<title>ComCare - Acceuil</title>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="{% static 'js/Acceuil.js' %}"></script>
+	<script src="{% static 'js/navbar.js' %}"></script>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+</head>
+
+<body>
+	<nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="/Acceuil/">Acceuil</a></li>
+            {% if user.is_superuser %}
+            <li><a href="/administration/">Administration</a></li>
+            {% endif %}
+        </ul>
+        <div class="log">
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="logout-button">Déconnexion</a>
+            {% endif %}
+            <div class="user-info"></div>
+        </div>
+    </nav>
+	<div class="main">
+		<div class="Menu">
+			<div class="Filtre">
+				<form>
+					<label for="categoriefilter">Categorie</label>
+					<select name="categoriefilter" id="categoriefilter" multiple>
+						{% for categorie in categories %}
+						<option value="{{ categorie.0 }}">{{ categorie.1 }}</option>
+						{% endfor %}
+					</select>
+					<button type="button" id="submitfilter">Filtrer</button>
+				</form>
+			</div>
+			<div class="ListeTicket">
+			</div>
+			<div class="Nouveauticket">
+				<button>Nouveau ticket</button>
+			</div>
+		</div>
+		<div class="corps">
+			<div class="detail">
+				<div class="flex-row-sbw height5">
+					<div class="Titre">
+						<h1>Titre</h1>
+					</div>
+					<div class="Etat">
+						<h1>Etat</h1>
+					</div>
+				</div>
+				<div class="flex-row-sbw height5">
+					<div class="createur">
+						<h3>createur</h3>
+					</div>
+
+					<div class="Date">
+						<p>Date</p>
+					</div>
+
+				</div>
+				<div class="Description">
+					<h1>Description</h1>
+				</div>
+				<div id="list_msg">
+				</div>
+				<from>
+					<input type="text" name="message" id="message" placeholder="Répondre">
+					<button type="button" value="Envoyer" id="msg_submit">Envoyer</button>
+				</from>
+			</div>
+			<form class="formnewticket">
+				<h1>Nouveau ticket</h1>
+				<label for="titre"> Titre</label>
+				<input type="text" name="titre" id="titre" pattern="^\D*$" required>
+
+				<label for="description">Description</label>
+				<input type="text" name="description" id="description" pattern="^\D*$" required>
+
+				<div>
+					<label for="categorie">Categorie</label>
+					<select name="categorie" id="categorie" multiple>
+						{% for categorie in categories %}
+						<option value="{{ categorie.0 }}">{{ categorie.1 }}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div>
+					<label for="anonymous">Anonyme</label>
+					<input type="checkbox" name="anonymous" id="anonymous">
+				</div>
+
+				<div>
+					<button id="submitnewticketform" type="button">Envoyer</button>
+					<button type="reset">Effacer</button>
+				</div>
+				<a href="{% url 'logout' %}">Déconnexion</a>
+
+
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -39,7 +39,7 @@ Nous donnons la possibilité à toute personne de créer des tickets et nous les
 - Clonez le repository
 - Installez les dependencies
 ```bash
-pip install -r requirements.txt
+pip install -r requirement.txt
 ```
 - mettre a jour la base de donnée
 ```bash
